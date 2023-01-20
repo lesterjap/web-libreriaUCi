@@ -21,7 +21,7 @@ public class ServicioVenta {
     
     public int Comprar( Venta v){
         RV.save(v);
-
+        
         return 1;
     }
 
@@ -32,3 +32,4 @@ public class ServicioVenta {
         return 1;
     }
 }
+        
