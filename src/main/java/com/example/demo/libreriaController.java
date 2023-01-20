@@ -52,6 +52,7 @@ public class libreriaController{
          */
      @GetMapping
      public String index(HttpServletRequest request,Model map) {  
+      
       Boolean esadmin = false;
       Boolean conect = false;
       Boolean conect2 = true;
@@ -67,7 +68,7 @@ public class libreriaController{
           List<Libro> Libros = (List<Libro>)SL.ListarLibro(); 
           for(long li:s.getLibros()){
           for(Libro l: Libros){
-            l.setISBN("portadas/"+l.getISBN()+".gif");
+            l.setISBN("/portadas/"+l.getISBN()+".gif");
               if(l.getLibro_id() == li){
                 LibrosC.add(l);
               } 
@@ -89,7 +90,7 @@ public class libreriaController{
       List<Libro> LibrosC = new LinkedList<>();
       List<Libro> Libros = (List<Libro>)SL.ListarLibro(); 
       for(Libro l: Libros){
-        l.setISBN("portadas/"+l.getISBN()+".gif");}
+        l.setISBN("/portadas/"+l.getISBN()+".gif");}
       map.addAttribute("Libros", Libros);
       map.addAttribute("Usuarioname", "Registar para comprar");
       map.addAttribute("LibrosC", LibrosC);
@@ -99,6 +100,90 @@ public class libreriaController{
        return "index";
      }
 
+
+
+     @PostMapping("buscarLibrosIndex/") //Buscar Libro/////////////////////////////////////////////////////////////////////////////////////
+     public String buscarLibrosIndice(HttpServletRequest request,@RequestParam String text, Model map){
+       List<Libro> L = (List<Libro>)SL.ListarLibro(); 
+       List<Libro> Libros = new LinkedList<>();
+      // int aux = 0;
+       for(Libro l: L){
+          if (l.getNombreLibro().contains(text)){
+           
+           Libros.add(l);
+          } else{
+        
+          }
+         // aux++;
+       }
+      
+ 
+       map.addAttribute("Libros", Libros);
+      
+ 
+          /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+          Boolean esadmin = false;
+          Boolean conect = false;
+          Boolean conect2 = true;
+          
+         for(sesion s: sesiones){
+             if(s.getIp().equals(request.getRemoteAddr()) ){
+                esadmin = s.getU().getAdmin();
+                conect = true;
+                conect2 = false;
+              String usuario = s.getU().getNombre();
+              List<Libro> LibrosC = new LinkedList<>();
+              
+              
+              for(long li:s.getLibros()){
+              for(Libro l: Libros){
+                l.setISBN("/portadas/"+l.getISBN()+".gif");
+                  if(l.getLibro_id() == li){
+                    LibrosC.add(l);
+                  } 
+              }
+            }
+              map.addAttribute("Libros", Libros);
+              map.addAttribute("Usuarioname", usuario);
+              map.addAttribute("LibrosC", LibrosC);
+              map.addAttribute("esadmin", esadmin);
+              map.addAttribute("conect", conect);
+              map.addAttribute("conect2", conect2);
+              return "index";
+    
+    
+    
+             }
+    
+          }
+          List<Libro> LibrosC = new LinkedList<>();
+   
+          for(Libro l: Libros){
+            l.setISBN("/portadas/"+l.getISBN()+".gif");
+          }
+
+          map.addAttribute("Libros", Libros);
+          map.addAttribute("Usuarioname", "Registar para comprar");
+          map.addAttribute("LibrosC", LibrosC);
+          map.addAttribute("conect", conect);
+          map.addAttribute("conect2", conect2);
+    
+           return "index";
+
+      
+       
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+         }
+ 
+         @GetMapping("buscarLibrosIndex/")    //Para retornar a la pagina index /////////////////////////////////////////////////////////////
+         public String buscarLibrosIndex(Model map){
+ 
+           return "redirect:/";
+         }
+ 
 
        //Gestionar Libros ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -251,16 +336,35 @@ public class libreriaController{
          //Administrar Cuenta/////////////////////////////////////////////////////////////////////////////////////////////
 
 @PostMapping("Modificarme/") //Modificar Usuario
-    public String modificarU(@Validated Usuario U, @RequestParam String LiID, Model mp){
-      
+    public String modificarU(HttpServletRequest request, @Validated Usuario U, @RequestParam String LiID, Model mp){
+       
+      for(sesion s: sesiones){
+        if(s.getIp().equals(request.getRemoteAddr()) ){
+          s.setU(U);
+
+        } 
+      }
+
+
+
       SU.update(U, LiID);
       return  "redirect:/";
     } 
 
-    @PostMapping("Eliminarme") //Eliminar
-    public String elmininarme(@RequestParam String LiID, Model mp){
+    @PostMapping("Eliminarme/") //Eliminar
+    public String elmininarme( HttpServletRequest request, @RequestParam String LiID, Model mp){
+      int aux = 0;
+     
+      for(sesion s: sesiones){
+        if(s.getIp().equals(request.getRemoteAddr()) ){
+          aux++;
+
+        } 
+      }
+      sesiones.remove(aux);
 
       SU.eliminarUsuario(Long.parseLong(LiID));
+
       return "redirect:/Logout/";
     }
 
@@ -467,6 +571,23 @@ public class libreriaController{
 
         return "redirect:/";
       }
+
+
+      @GetMapping("quejas/")
+      public String quejas(HttpServletRequest request,Model map){
+        String ip = request.getRemoteAddr();
+       Usuario us = new Usuario();
+        for(sesion s : sesiones){
+          if(s.getIp().equals(ip)){
+            us = s.getU();
+            break;
+          }
+         }
+
+         map.addAttribute("Usuario", us);
+        return "quejasSugerencias";
+      }
+
 
 
 }

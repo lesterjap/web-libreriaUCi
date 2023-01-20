@@ -380,3 +380,22 @@ select {
     display: none;
 
 }
+
+
+
+.quejas-sugeremcias img {
+    z-index: 999;
+    position: absolute;
+    margin-top: 43%;
+    margin-left: 95%;
+    
+
+    width: 40px;
+    height: auto;
+    background-color: rgb(120, 162, 189);
+    border-radius: 5px;
+}
+.quejas-sugeremcias img:hover{
+    
+    scale: 1.2;
+}

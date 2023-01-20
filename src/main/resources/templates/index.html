@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libreria online UCi</title>
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     
 </head>
 
@@ -23,21 +23,31 @@ function ocultarventana2(){
     document.getElementById('qr').style.display = "none"
 }
 
+
+
+
 </script>
 <div id="ventana_flotante-container-black-2" onclick="ocultarventana2()"></div>
 <div class="qr-venta"  id="qr">
     <div>
-<img th:src="@{assets/QR.png}" alt="">
+<img th:src="@{/assets/QR.png}" alt="">
     </div>
     <div>
         <button onclick="location.href='/'">Cancelar</button><Label></Label><button onclick="location.href='/Comprar/' ">Comprar</button>
     </div>
 </div>
 
+
+
+
+<div class="quejas-sugeremcias"><img onclick="location.href='/quejas/'" th:src="@{/assets/icons8-edit-message-24.png}" alt=""></div>
+
+
+
 <!--Barra de la lista de compra-->
 <nav class="barraLateral" id="BL">
     <div style="display: flex;" id="botonOcultar">
-        <img id="flecha" onclick="ocultarBarraDeCompra()" th:src="@{assets/flecha.svg}" alt="">
+        <img id="flecha" onclick="ocultarBarraDeCompra()" th:src="@{/assets/flecha.svg}" alt="">
         <div id = "compra" style="display: none;">
         <button type="button" class="btn btn-dark" onclick="comprar()" style="margin-top: 12px; margin-left: 70px; ">Pagar</button>
     </div>
@@ -60,7 +70,7 @@ function ocultarventana2(){
 
 <div id="carga">
     <div id="ventana_flotante-container-black"></div>
-    <img th:src="@{assets/load.gif}" alt="">
+    <img th:src="@{/assets/load.gif}" alt="">
 </div>
 
 <div id="ventana_flotante-container">
@@ -80,7 +90,7 @@ function ocultarventana2(){
     <nav id="navbar" class="navbar navbar-dark bg-dark">
         <div id="intem">
 
-            <img id="logo" th:src="@{assets/Logo.png}" alt="">
+            <img id="logo" th:src="@{/assets/Logo.png}" alt="">
             <h3>Librería Online UCi</h3>
 
             <div id="options">
@@ -112,14 +122,14 @@ function ocultarventana2(){
             </div>
         </div>
 
-        <form action=" " class="searsh">
-            <input type="text" id="searsh" placeholder="Buscar">
-            <button type="button" id="action_searsh"><img th:src="@{assets/search-200.svg}" alt=""></button>
+        <form action="/buscarLibrosIndex/" class="searsh" method="post">
+            <input type="text" name="text" id="searsh" placeholder="Buscar">
+            <button type="submit" id="action_searsh"><img th:src="@{/assets/search-200.svg}" alt=""></button>
 
         </form>
         <div id="usuario" onclick="opcionesUser()">
             <div id="name-user"th:text="${Usuarioname}"></div>
-            <Img id="img-user" th:src="@{assets/user-default.svg}">
+            <Img id="img-user" th:src="@{/assets/user-default.svg}">
 
             <!--Cuadrode administrador -->
 
@@ -147,7 +157,7 @@ function ocultarventana2(){
         </div>
         <div id="chopping" onclick="barraDeCompra()">
             <label for="" id="shopping-1">
-            <img th:src="@{assets/shopping-47.svg}" alt="">
+            <img th:src="@{/assets/shopping-47.svg}" alt="">
             <div id="bolita-noti"></div>
         </label>
         </div>
@@ -194,7 +204,7 @@ function ocultarventana2(){
     <div id="caja_productos">
         <tr th:each="tmpEmp: ${Libros}">
             <div id="libro" >
-                <div id="portada"> <img th:src='@{{patch}(patch = ${tmpEmp.ISBN})}'>
+                <div id="portada"> <img th:src='${tmpEmp.ISBN}'>
                 </div>
 
                 <div id="datos">
@@ -210,7 +220,7 @@ function ocultarventana2(){
 
                        
 
-                        <button th:attr="onclick=|options('${tmpEmp.Libro_id}')|" ><img th:src="@{assets/Shopping-cart.svg}" alt=""></button>
+                        <button th:attr="onclick=|options('${tmpEmp.Libro_id}')|" ><img th:src="@{/assets/Shopping-cart.svg}" alt=""></button>
                     </div>
                 </div>
 
