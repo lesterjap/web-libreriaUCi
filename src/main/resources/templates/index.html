@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libreria online UCi</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    
+</head>
+
+
+<script>
+
+function comprar(){
+    document.getElementById('ventana_flotante-container-black-2').style.display = "block"
+    document.getElementById('qr').style.display = "block"
+}
+function ocultarventana2(){
+    document.getElementById('ventana_flotante-container-black-2').style.display = "none"
+    document.getElementById('qr').style.display = "none"
+}
+
+</script>
+<div id="ventana_flotante-container-black-2" onclick="ocultarventana2()"></div>
+<div class="qr-venta"  id="qr">
+    <div>
+<img th:src="@{assets/QR.png}" alt="">
+    </div>
+    <div>
+        <button onclick="location.href='/'">Cancelar</button><Label></Label><button onclick="location.href='/Comprar/' ">Comprar</button>
+    </div>
+</div>
+
+<!--Barra de la lista de compra-->
+<nav class="barraLateral" id="BL">
+    <div style="display: flex;" id="botonOcultar">
+        <img id="flecha" onclick="ocultarBarraDeCompra()" th:src="@{assets/flecha.svg}" alt="">
+        <div id = "compra" style="display: none;">
+        <button type="button" class="btn btn-dark" onclick="comprar()" style="margin-top: 12px; margin-left: 70px; ">Pagar</button>
+    </div>
+    </div>
+    <div>
+<hr>
+<br> 
+<div id = "CC" style="display: none;">
+<tr th:each="tmpEmp: ${LibrosC}">
+    <td th:text="${tmpEmp.NombreLibro}"></td>
+    $
+    <td th:text="${tmpEmp.precio}">Precio</td>
+    <hr>
+</tr>
+</div>
+        
+    </div>
+</nav>
+
+
+<div id="carga">
+    <div id="ventana_flotante-container-black"></div>
+    <img th:src="@{assets/load.gif}" alt="">
+</div>
+
+<div id="ventana_flotante-container">
+    <div id="ventana_flotante-container-black" onclick="ocultarventana()"></div>
+
+    <div id="ventana_flotante">
+        <form action="/agregarCarrito/" method="post">
+        <p id="Descriptión">Desea agregar este producto al carrito de compras?</p>
+        <input type="text" id="idL" style="display: none;" name="idL">
+        <div style="display: flex;"> <button>👍</button><label ></label><button type="button" onclick="location.href='/'">👎</button></div>
+       </form>
+
+    </div>
+</div>
+
+<body id="Container">
+    <nav id="navbar" class="navbar navbar-dark bg-dark">
+        <div id="intem">
+
+            <img id="logo" th:src="@{assets/Logo.png}" alt="">
+            <h3>Librería Online UCi</h3>
+
+            <div id="options">
+                <div class="nav-item" id="categoria">
+                    <div id="selection">Categorías</div>
+                    <div id="contain_intem">
+                        <div id="C1">Romance</div>
+                        <div id="C2">Ciencia Ficción</div>
+                        <div id="C3">Programación</div>
+                        <div id="C4">Historia</div>
+                        <div id="C5">Novelas</div>
+                    </div>
+                </div>
+
+
+
+                <div class="nav-item">Autores Cubanos</div>
+
+                <div class="nav-item" id="categoria">
+                    <div id="selection">Sobre Nosotros </div>
+                    <div id="contain_intem">
+                        <div id="C1">Equipo</div>
+                        <div id="C2">Lester</div>
+                        <div id="C3">Danieska</div>
+                        <div id="C4">Yamisleidis</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <form action=" " class="searsh">
+            <input type="text" id="searsh" placeholder="Buscar">
+            <button type="button" id="action_searsh"><img th:src="@{assets/search-200.svg}" alt=""></button>
+
+        </form>
+        <div id="usuario" onclick="opcionesUser()">
+            <div id="name-user"th:text="${Usuarioname}"></div>
+            <Img id="img-user" th:src="@{assets/user-default.svg}">
+
+            <!--Cuadrode administrador -->
+
+            <div class="cosasUser" id="cosasUser">
+            <div th:if="${esadmin}">
+                <label onclick="location.href = '/AdministrarUsuario/'">Gestionar Usuarios</label>
+                <label onclick="location.href = '/gestionarLibros/'">Gestionar Libros</label>
+                <label onclick="location.href = '/AdministrarVenta/'">Administrar Ventas</label>
+            </div>
+
+            <div th:if="${conect}">
+                <label onclick="location.href = '/Logout/'">Log out</label>
+
+                <label onclick="location.href = '/EditPerfil/'">Administrar Cuenta</label>
+
+            </div>
+
+            <div th:if="${conect2}">
+                <label onclick="location.href = '/Login/'">Sign in</label>
+            </div> 
+           
+           
+        </div>
+
+        </div>
+        <div id="chopping" onclick="barraDeCompra()">
+            <label for="" id="shopping-1">
+            <img th:src="@{assets/shopping-47.svg}" alt="">
+            <div id="bolita-noti"></div>
+        </label>
+        </div>
+    </nav>
+
+    <script>
+        function barraDeCompra() {
+            aux = document.getElementById('BL');
+            aux.style.width = '200px';
+            aux.style.marginLeft = '85%';
+            document.getElementById('flecha').style.transform = 'rotate(-90deg)'
+            document.getElementById('flecha').style.display = 'block'
+            document.getElementById('CC').style.display = 'block'
+            document.getElementById('compra').style.display = 'block'
+        }
+
+        function ocultarBarraDeCompra() {
+            aux = document.getElementById('BL');
+            aux.style.width = '0px';
+            aux.style.marginLeft = '100%';
+            document.getElementById('flecha').style.transform = 'rotate(+90deg)'
+            document.getElementById('flecha').style.display = 'none'
+            document.getElementById('CC').style.display = 'none'
+            document.getElementById('compra').style.display = 'none'
+        }
+
+        var aux123 = true;
+
+        function opcionesUser() {
+            if (aux123) {
+                document.getElementById('cosasUser').style.display = 'Block';
+
+                aux123 = false;
+            } else {
+                document.getElementById('cosasUser').style.display = 'none';
+
+                aux123 = true;
+            }
+        }
+    </script>
+
+        <!--  Tarjetas de los libros -->
+
+    <div id="caja_productos">
+        <tr th:each="tmpEmp: ${Libros}">
+            <div id="libro" >
+                <div id="portada"> <img th:src='@{{patch}(patch = ${tmpEmp.ISBN})}'>
+                </div>
+
+                <div id="datos">
+                  
+                    <p style="margin-top: -16px; text-align: center; width: 100%;">
+
+                        $
+                        <td th:text="${tmpEmp.precio}">Precio</td>
+
+                    </p>
+
+                    <div class="optionlibro">
+
+                       
+
+                        <button th:attr="onclick=|options('${tmpEmp.Libro_id}')|" ><img th:src="@{assets/Shopping-cart.svg}" alt=""></button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </tr>
+
+        <script>
+            function options(aux2) {
+                var ventana = document.getElementById('ventana_flotante-container');
+                ventana.style.display = " inline ";
+                document.getElementById('idL').value = aux2;
+                
+            }
+
+            function ocultarventana() {
+                var ventana = document.getElementById('ventana_flotante-container');
+                ventana.style.display = "none ";
+            }
+        </script>
+
+    </div>
+
+    <div id="nav-button-bar "> @ by Lester</div>
+
+
+</body>
+
+</html>

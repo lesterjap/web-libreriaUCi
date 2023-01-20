@@ -1,0 +1,139 @@
+.container {
+    margin-left: -8px;
+    margin-top: -8px;
+    display: flex;
+   
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(74, 83, 112);
+}
+
+
+
+.listaDLibros input{
+    width: 20px;
+    height: 20px;
+}
+.listaDLibros table{
+    border-radius: 6px;
+    background-color: rgb(126, 161, 173);
+    margin-top: 20px;
+    width: 900px;
+}
+.listaDLibros table td{
+    height: 40px;
+}
+
+.listaDLibros .SearshBar {
+  display: flex;
+
+ }
+
+.SearshBar div label img{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 3px;
+    width: 25px; height: auto;
+    cursor: pointer ;
+}
+.SearshBar div label img:hover{
+    scale: 1.3;
+}
+.searsh {
+    margin-left: 687px;
+    margin-top: 10px;
+    display: flex;
+    -ms-flex-item-align: center;
+    padding-right: 3%;
+}
+
+.searsh #searsh {
+    border: 0px solid;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 150px;
+}
+
+.searsh #action_searsh {
+    width: 60px;
+    border: 0px solid;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.searsh #action_searsh img {
+    width: 15px;
+    height: auto;
+}
+#imgeliminar{
+    margin-top: 3px;
+    width: 13px;
+    height: auto;
+}
+
+
+
+
+
+.contenedorAL{
+    
+    margin-top: 7%;
+    margin-left: 41%;
+    border-radius: 4px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 250px;
+    height: 450px;
+    background-color: rgb(25, 39, 68);
+    z-index: 999;
+}
+
+
+.contenedorAL .contAL input{
+ height: 40px;
+ width: 200px;
+
+}
+.options{
+    display: flex;
+    padding-left: 3px;
+}
+.contenedorAL  button{
+   width: 100px;
+   height: 30px;
+
+}
+
+
+.Barradearriba{
+    text-align: center;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 101.15%;
+    height: 80px;
+    background-color: rgb(9, 10, 29);
+
+}
+.Barradearriba label{
+    font-size: 45px;
+    color: rgb(255, 255, 255);
+}
+
+.atras{
+    
+    position:absolute;
+   margin-left: 95%;
+   margin-top: 25px;
+   background-color: rgb(16, 65, 99);
+   
+}
+.atras img{
+    width: 30px;
+    height: 30px;
+    z-index: 999;
+}

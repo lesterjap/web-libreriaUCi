@@ -1,0 +1,382 @@
+#caja_productos {
+    margin-top: 4px;
+}
+
+nav {
+    color: rgb(15, 15, 15);
+}
+
+.searsh {
+    display: flex;
+    -ms-flex-item-align: center;
+    padding-right: 3%;
+}
+
+.searsh #searsh {
+    border: 0px solid;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.searsh #action_searsh {
+    width: 60px;
+    border: 0px solid;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.searsh #action_searsh img {
+    width: 20px;
+    height: auto;
+}
+
+#logo {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+}
+
+#intem {
+    padding-left: 10px;
+    display: flex;
+    margin-top: 10px;
+}
+
+#options {
+    z-index: 999;
+    margin-top: 6px;
+    margin-left: 20px;
+    display: flex;
+}
+
+#options div,
+select {
+    text-align: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#intem_select {
+    border: 0px;
+}
+
+#contain_intem {
+    position: absolute;
+    display: none;
+    background-color: rgb(58, 59, 73);
+    box-shadow: 2px 2px 1px 1px rgb(49, 49, 49);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: 0px;
+}
+
+#categoria:hover #contain_intem {
+    display: block;
+    width: 120px;
+    height: auto;
+}
+
+#categoria:hover #selection {
+    box-shadow: 2px 5px 1px 1px rgb(49, 49, 49);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: rgb(58, 59, 73);
+    border-bottom: 0px;
+}
+
+#categoria {
+    width: 130px;
+}
+
+#nav-button-bar {
+    text-align: center;
+    background-color: rgb(92, 85, 85);
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+}
+
+#usuario {
+    padding-right: 0px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#usuario #img-user {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+#usuario #name-user {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#chopping img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+
+#chopping {
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#bolita-noti {
+    display: none;
+    margin-top: -29px;
+    margin-left: 25px;
+    background-color: rgb(121, 64, 64);
+    border-color: black;
+    border: 1px solid;
+    border-radius: 100%;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+}
+
+#shopping-1 {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: 1px solid;
+    background-color: rgb(36, 80, 80);
+}
+
+#caja_productos {
+    position: absolute;
+    padding-bottom: 5px;
+    padding-left: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: break-word;
+    overflow-y: auto;
+    padding-top: 5px;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+}
+
+#libro {
+    padding-bottom: 3px;
+    margin-top: 5px;
+    margin-left: 10px;
+    background-color: rgb(59, 94, 134);
+    width: 130px;
+    height: 210px;
+    box-shadow: 1px 1px 0px 0px rgb(54, 53, 53);
+}
+
+#libro #portada {
+    width: 100%;
+    height: 80%;
+    border: 0px solid;
+}
+
+#libro #datos {
+    margin-top: 20px;
+    color: black;
+    padding-left: 3px;
+    font-family: sans-serif;
+    font-size: 150%;
+    font-style: normal;
+}
+
+#libro:hover {
+    scale: 1.05;
+    background-color: rgb(55, 75, 99);
+}
+
+#ventana_flotante {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin-top: 15%;
+    margin-left: 40%;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    background-color: rgb(126, 161, 173);
+    border-radius: 6px;
+    box-shadow: 2px 2px 0px 0px rgb(53, 50, 50);
+}
+
+#ventana_flotante div button{
+    width: 60px; 
+    border-radius: 6px;
+    border: 1px solid;
+    background-color: rgb(145, 196, 196);
+}
+#ventana_flotante div label{
+    width: 150px;
+}
+
+#ventana_flotante div {
+    justify-content: center;
+}
+
+#ventana_flotante p {
+    color: black;
+}
+
+#ventana_flotante-container-black {
+    background-color: black;
+    opacity: 0.6;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#ventana_flotante-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    z-index: 999;
+}
+
+#libro img {
+    width: 100%;
+    height: 100%;
+}
+
+#carga {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: absolute;
+    align-items: center;
+    display: none;
+}
+
+#carga img {
+    width: 100px;
+    margin-top: 250px;
+    margin-left: 635px;
+}
+
+.barraLateral {
+    margin-top: 68px;
+    width: 0px;
+    z-index: 999;
+    position: absolute;
+    margin-right: 0px;
+    margin-left: 100%;
+    height: 100%;
+    background-color: rgb(107, 107, 107);
+    transition: all 0.5s ease-out;
+}
+
+.barraLateral img {
+    transition: all 0.8s ease-out;
+    margin-left: 8px;
+    margin-top: 8px;
+    display: none;
+}
+
+.optionlibro {
+    margin-left: -4px;
+    position: absolute;
+    z-index: 999;
+    width: 132px;
+    height: 0px;
+    background-color: rgb(66, 74, 99);
+    transition: all 0.5s ease-out;
+}
+
+.optionlibro button {
+    opacity: 0.8;
+    text-align: center;
+    background-color: #527c94;
+    color: #fff;
+    border: none;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 0px;
+    width: 90px;
+    display: none;
+    border: 0px solid;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+#libro:hover .optionlibro {
+    margin-top: -80px;
+    height: 80px;
+}
+
+#libro:hover .optionlibro button {
+    display: block;
+    height: 20px;
+}
+
+.cosasUser {
+    display: none;
+    margin-left: -20px;
+    margin-top: 277px;
+    padding-top: 10px;
+    padding-left: 3px;
+    z-index: 999;
+    position: absolute;
+    width: 160px;
+    height: 190px;
+    background-color: rgb(166, 197, 206);
+    border-radius: 6px;
+    transition: opacity 0.5s;
+    box-shadow: 0px 0px 2px 2px rgb(80, 77, 77);
+}
+
+.cosasUser label {
+    width: 98.1%;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.cosasUser label:hover {
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgb(88, 92, 94);
+}
+
+
+.qr-venta{
+    display: none;
+    margin-left: 45%;
+    margin-top: 10%;
+    border: 1px solid;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 999; 
+    width: 200px;
+    height: 280px; 
+    background-color:rgb(4, 4, 4);
+}
+.qr-venta div img{
+    width: 100%;
+    height: auto;
+}
+.qr-venta button{
+    margin-left: 5px;
+    border: 1px solid;
+    background-color: #385a6d;
+    
+}
+.qr-venta label{
+    width: 30px;
+}
+
+#ventana_flotante-container-black-2{
+    z-index: 998;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    display: none;
+
+}

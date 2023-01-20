@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Libros</title>
+    <link rel="stylesheet" th:href="@{/css/StyleGl.css}" type="text/css">
+   
+</head>
+
+<body>
+    <div class="contenedorAL" id="CAL1">
+        <form th:action="@{/ModificarLibros/}"  th:object = ${Libro}  method="post">
+        <div class="contAL">
+            <div>
+            <input th:field ="*{NombreLibro}"  type="text" placeholder="Nombre">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Pais}" type="text" placeholder="País" pattern="[A-Za-z0]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{ISBN}"   type="text" placeholder="ISBN" minlength="10" maxlength="13" pattern="[0-9]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{descrp}"   type="text" placeholder="Descriptión" pattern="[A-Za-z0 ]+">
+            </div>
+            <hr> 
+            <div>
+            <input th:field ="*{precio}"  type="text" placeholder="Precio"   pattern="^[0-9.]+" >
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Autor}"    type="text" placeholder="Autor" pattern="[A-Za-z0 ]+">
+            </div>
+            <hr> 
+            <div style="display: none;">
+                <input  type="text" id="LiID" name="LiID">
+            </div>
+        
+        </div>
+        <div class="options">
+        <button>👍</button><button  type="button" onclick="location.href='/gestionarLibros/'">👎</button>
+        </div>
+    </form>
+    </div>
+   
+    <div class="contenedorAL" id="CAL">
+        <form th:action="@{/gestionarLibros/}"  th:object = ${Libro}  method="post">
+        <div class="contAL">
+            <div>
+            <input th:field ="*{NombreLibro}" required type="text" placeholder="Nombre">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Pais}" required  type="text" placeholder="País" pattern="[A-Za-z0 ]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{ISBN}"  required type="text" placeholder="ISBN" minlength="10" maxlength="13" pattern="[0-9]+" >
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{descrp}" required   type="text" placeholder="Descriptión" pattern="[A-Za-z0 ]+">
+            </div>
+            <hr> 
+            <div>
+            <input th:field ="*{precio}" required type="text" placeholder="Precio"   pattern="^[0-9.]+" >
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Autor}" required   type="text" placeholder="Autor" pattern="[A-Za-z0 ]+">
+            </div>
+            <hr> 
+        </div>
+        <div class="options">
+        <button>👍</button><button  type="button" onclick="location.href='/gestionarLibros/'">👎</button>
+        </div>
+    </form>
+    </div>
+    <div id="fondonegro23" style="margin-top: -8px; margin-left: -8px;width: 100%; height: 100%; position: absolute; background-color: black; opacity: 0.8; z-index: 998;"></div>
+
+    <script>
+        document.getElementById('CAL').style.display = 'none';
+        document.getElementById('fondonegro23').style.display = 'none';
+        function crearLibro(){
+        document.getElementById('CAL').style.display = 'flex';
+        document.getElementById('fondonegro23').style.display = 'block';
+       }
+
+       document.getElementById('CAL1').style.display = 'none';
+       function ModificarLibro(id){
+        document.getElementById('CAL1').style.display = 'flex';
+        document.getElementById('fondonegro23').style.display = 'block';
+        document.getElementById('LiID').value = id;
+       }
+    </script>
+
+    
+
+    <button onclick="location.href = '/'" class="atras"> <strong style="color: aliceblue;">Atrás</strong>  </button> <!--Boton Atrás-->
+   
+    
+
+<nav class="Barradearriba">
+        
+<Label>Gestionar Libros</Label>
+
+    </nav>
+    <nav class="container">
+
+        <div class="listaDLibros">
+           
+            <div class="SearshBar">
+                <div>
+                <label  onclick="crearLibro()"><img th:src="@{/assets/mas1.png}" alt=""  ></label>  
+                
+                 </div>
+
+
+
+                 <!-- Buscar Libros -->
+                <form action="/buscarLibros/" class="searsh" method="POST">
+                    <input type="text" id="searsh" placeholder="Buscar" name="text">
+                    <button type="submit" id="action_searsh"><img th:src="@{/assets/search-200.svg}" alt=""></button>
+                </form>
+          </div>
+            
+          
+          
+          
+          <table>
+                <td>
+                    <td>Nombre</td>
+                    <td>País</td>
+                    <td>Autor</td>
+                    <td>ISBN</td>
+                    <td>Precio</td>
+
+                    <td></td>
+                    
+                    <td >
+                        <div style="display: flex; height: 16px; align-items: center;">
+                            <input type="checkbox" name="" id="listaCheck" onclick="seleccionarTodo()">
+                            <button onclick="document.f1.submit()"><img id="imgeliminar" th:src="@{/assets/eliminar.png}" alt=""></button>
+                </div>
+                </td>
+              
+            
+              <form name = "f1" th:action="@{/eliminarL/}"  method="post" enctype="multipart/form-data">
+                <tr th:each="tmpEmp: ${Libros}">
+
+                 
+                    <td>
+                        <td th:text="${tmpEmp.NombreLibro}"></td>
+                        <td th:text="${tmpEmp.Pais}"></td>
+                        <td th:text="${tmpEmp.Autor}"></td>
+                        <td th:text="${tmpEmp.ISBN}"></td>
+                        <td th:text="${tmpEmp.precio}"></td>
+                        <td><button type="button" th:attr="onclick=|ModificarLibro('${tmpEmp.Libro_id}')|" >Modificar</button></td>
+                        <td><input type="checkbox" name="deleteL" id="listaEliminar" th:value="${tmpEmp.Libro_id}" ></td>
+                    </td>
+                
+
+                </tr>
+            </form>  
+            </table>
+       
+            <script>
+
+                function seleccionarTodo() {
+                    for (let i = 0; i< document.f1.elements.length; i++){
+
+                        if(document.f1.elements[i].type == "checkbox"){
+                            document.f1.elements[i].checked = document.getElementById("listaCheck").checked; 
+                        }
+                    }
+                }
+
+            </script>
+
+    </nav>
+
+
+</body>
+
+</html>

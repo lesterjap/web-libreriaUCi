@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Ventas</title>
+    <link rel="stylesheet" th:href="@{/css/StyleGl.css}" type="text/css">
+   
+</head>
+
+<body>
+    
+
+   
+
+<button onclick="location.href = '/'" class="atras" ><strong style="color: aliceblue;">Atrás</strong></button> <!--Boton Atrás-->
+
+<nav class="Barradearriba">
+
+<Label>Administrar Ventas</Label>
+
+    </nav>
+    <nav class="container">
+
+        <div class="listaDLibros">
+           
+            <div class="SearshBar">
+                
+                
+
+            </div>
+            <table>
+                <td>
+                    <td>Fecha</td>
+                    <td>Importe</td>
+                    <td>Cantidad</td>
+                    <td></td>
+                    
+                    <td >
+                        <div style="display: flex; height: 16px; align-items: center;">
+                            <input type="checkbox" name="" id="listaCheck" onclick="seleccionarTodo()">
+                            <button onclick="document.f1.submit()"><img id="imgeliminar" th:src="@{/assets/eliminar.png}" alt=""></button>
+                </div>
+                </td>
+              
+            
+              <form name = "f1" th:action="@{/eliminarV/}"  method="post" enctype="multipart/form-data">
+                <tr th:each="tmpEmp: ${Ventas}">
+
+                 
+                    <td>
+                        <td th:text="${tmpEmp.Fecha}"></td>
+                        <td th:text="${tmpEmp.Importe}"></td>
+                        <td th:text="${tmpEmp.Cantidad}"></td>
+                        
+                        <td><input type="checkbox" name="deleteV" id="listaEliminar" th:value="${tmpEmp.venta_id}" ></td>
+                    </td>
+                
+
+                </tr>
+            </form>  
+            </table>
+       
+            <script>
+
+                function seleccionarTodo() {
+                    for (let i = 0; i< document.f1.elements.length; i++){
+
+                        if(document.f1.elements[i].type == "checkbox"){
+                            document.f1.elements[i].checked = document.getElementById("listaCheck").checked; 
+                        }
+                    }
+                }
+
+            </script>
+
+    </nav>
+
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<style>
+    .gradient-custom {
+/* fallback for old browsers */
+background: #6a11cb;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgb(14, 104, 207));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(106, 17, 203, 1), rgb(18, 144, 211))
+}
+   </style>
+
+
+
+<body class="text-center">
+    <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+                <div class="mb-md-5 mt-md-4 pb-5">
+                <img id="logo" th:src="@{/assets/Logo.png}" alt="" style="border-radius: 900px;" width="70" height="70">
+              <h2 class="fw-bold mb-2 text-uppercase">Registrar</h2>
+
+    <div class="contenedorAL" id="CAL">
+        <form th:action="@{/Registrarse/}"  th:object = ${Usuario}  method="post">
+        <div class="contAL">
+            <div>
+            <input th:field ="*{Nombre}" required type="text" placeholder="Nombre" pattern="[A-Za-z0]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Apellido}" required  type="text" placeholder="Apellido" pattern="[A-Za-z0]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Email}"  required type="email" placeholder="Email" pattern="[^A-Z]+">
+            </div>
+            <hr>
+            <div>
+            <input th:field ="*{Contrasenna}" required   type="text" placeholder="Contraseña">
+            </div>
+            <hr> 
+            
+        </div>
+        <div class="options">
+        <button class="btn btn-outline-light btn-lg px-5">Registrar</button><button class="btn btn-outline-light btn-lg px-5" type="button" onclick="location.href='/AdministrarUsuario/'">Cancelar</button>
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>
