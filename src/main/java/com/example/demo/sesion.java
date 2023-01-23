@@ -34,8 +34,17 @@ public class sesion {
     public LinkedList<Long> getLibros() {
         return libros;
     }
-    public void setLibros(Long Id) {
-        this.libros.add(Id);
+    public int setLibros(Long Id) {
+
+        for(Long i : libros){
+            if(i == Id)
+                return 0;
+
+        }
+
+         this.libros.add(Id);
+        return 1;
+
     }
     
 }

@@ -25,6 +25,15 @@ public class ServicioUsuario{
    
 
     public int GuardarUsuario(Usuario U){
+
+        List<Usuario> ListaU = SU.findAll();
+
+        for (Usuario u : ListaU){
+            if(u.getEmail().equals(U.getEmail()))
+                return 0;   
+        }
+
+
         SU.save(U);
       return 1;
     }

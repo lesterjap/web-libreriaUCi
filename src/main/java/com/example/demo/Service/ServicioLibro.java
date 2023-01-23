@@ -24,6 +24,13 @@ public class ServicioLibro {
    
 
     public int GuardarLibro(Libro l){
+
+        List<Libro> Lista = LR.findAll();
+
+        for (Libro L : Lista){
+            if(L.getISBN().equals(l.getISBN()))
+                return 0;
+        }
         LR.save(l);
       return 1;
     }
